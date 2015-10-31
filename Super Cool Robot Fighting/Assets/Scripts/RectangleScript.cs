@@ -13,8 +13,13 @@ public class RectangleScript : MonoBehaviour
     public GameObject rightSpot;
     public Transform thisTransform;
     int rotationNumber = 0;
-    int lengthNumber = 0;
     int widthNumber = 0;
+    int heightNumber = 0;
+
+    void Start()
+    {
+        rebuild(8, 2, 3, 0, 0);
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,17 +34,22 @@ public class RectangleScript : MonoBehaviour
         }
     }
 
-    public void rebuild(int length, int width, int rotation, float x, float y)
+    public void rebuild(int width, int height, int rotation, float x, float y)
     {
-        scaleLength(length);
-        rotateRectangle(rotation);
         scaleWidth(width);
+        rotateRectangle(rotation);
+        scaleHeight(height);
         thisTransform.position = new Vector2(x, y);
     }
 
-    public int getLength()
+    public int getWidth()
     {
-        return lengthNumber;
+        return widthNumber;
+    }
+
+    public int getHeight()
+    {
+        return heightNumber;
     }
 
     public int getRotation()
@@ -70,41 +80,15 @@ public class RectangleScript : MonoBehaviour
         return rotationNumber;
     }
 
-    public void scaleLength(int factor)
-    {
-        lengthNumber = factor;
-        thisTransform.localScale = new Vector3((lengthNumber * scaleSnap), thisTransform.localScale.y, thisTransform.localScale.z);
-    }
-
-    public int scaleLengthUp()
-    {
-        if (lengthNumber < upperLengthLimit)
-        {
-            lengthNumber += 1;
-            scaleLength(lengthNumber);
-        }
-        return lengthNumber;
-    }
-
-    public int scaleLengthDown()
-    {
-        if (lengthNumber > 1)
-        {
-            lengthNumber -= 1;
-            scaleLength(lengthNumber);
-        }
-        return lengthNumber;
-    }
-
     public void scaleWidth(int factor)
     {
-        lengthNumber = factor;
-        thisTransform.localScale = new Vector3(thisTransform.localScale.x, (widthNumber * scaleSnap), thisTransform.localScale.z);
+        widthNumber = factor;
+        thisTransform.localScale = new Vector3((widthNumber * scaleSnap), thisTransform.localScale.y, thisTransform.localScale.z);
     }
 
     public int scaleWidthUp()
     {
-        if (widthNumber < upperWidthLimit)
+        if (widthNumber < upperLengthLimit)
         {
             widthNumber += 1;
             scaleWidth(widthNumber);
@@ -120,6 +104,32 @@ public class RectangleScript : MonoBehaviour
             scaleWidth(widthNumber);
         }
         return widthNumber;
+    }
+
+    public void scaleHeight(int factor)
+    {
+        heightNumber = factor;
+        thisTransform.localScale = new Vector3(thisTransform.localScale.x, (heightNumber * scaleSnap), thisTransform.localScale.z);
+    }
+
+    public int scaleHeightUp()
+    {
+        if (heightNumber < upperWidthLimit)
+        {
+            heightNumber += 1;
+            scaleHeight(heightNumber);
+        }
+        return heightNumber;
+    }
+
+    public int scaleHeightDown()
+    {
+        if (heightNumber > 1)
+        {
+            heightNumber -= 1;
+            scaleHeight(heightNumber);
+        }
+        return heightNumber;
     }
 
 }
