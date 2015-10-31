@@ -45,6 +45,8 @@ public class UIButtons : MonoBehaviour {
     public void ExpandWidth()
     {
         OnClick();
+        Debug.Log("Uhh "+ player.GetComponent<RobotController>().DataSolids[0].width);
+        player.GetComponent<RobotController>().DataSolids[0].width += 1;
     }
 
     public void ReduceHeight()
