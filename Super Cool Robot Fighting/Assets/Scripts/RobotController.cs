@@ -91,11 +91,15 @@ public class solids
 
 public class joints
 {
+    //type 1: loose
+    //type 2: fixed
+    //type 3: motorised clockwise
+    //type 4: motorised anti-clockwise
     public int type = 1;
     public int rootConnection;
     public int targConnection;
-    public float conX = 0.2f;
-    public float conY = -0.5f;
+    public float conX = 0f;
+    public float conY = 0f;
     public float axX = 0.5f;
     public float axY = 1f;
     public HingeJoint2D h;
