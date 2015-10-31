@@ -14,9 +14,9 @@ public class RobotController : MonoBehaviour {
     public GameObject Triangle;
 
 	void Start () {
-        addShape(3, 0);
+        //addShape(3, 0);
         addShape(1, 1);
-        addShape(2, 2);
+        ///addShape(2, 2);
 
 
         updateRobot();
@@ -38,7 +38,7 @@ public class RobotController : MonoBehaviour {
     //add shape
     public void addShape(int type, int connection)
     {
-
+        Debug.Log("addShape()");
         solids crappySolid = new solids();
         crappySolid.ID = DataSolids.Count;
         DataSolids.Add(crappySolid);
@@ -48,6 +48,8 @@ public class RobotController : MonoBehaviour {
         crappyJoint.from = crappySolid.ID;
         crappyJoint.to = connection;
         DataJoints.Add(crappyJoint);
+
+        updateRobot();
     }
 
     private void jointBuild(joints obj)

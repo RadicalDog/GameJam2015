@@ -22,6 +22,8 @@ public class UIButtons : MonoBehaviour {
     #endregion
 
     public static int objectId;
+    public GameObject player;
+    public GameObject reference;
 
     public void OnClick()
     {
@@ -96,19 +98,19 @@ public class UIButtons : MonoBehaviour {
     #region [New Object Methods]
     public void ShapeMethods()
     {
-        GameObject[] shapeButtons = GameObject.FindGameObjectsWithTag("ShapeButton");
+        //GameObject[] shapeButtons = GameObject.FindGameObjectsWithTag("ShapeButton");
 
-        foreach (GameObject shapeButton in shapeButtons)
-        {
-            if (gameObject.GetInstanceID() == shapeButton.GetInstanceID())
-            {
+        //foreach (GameObject shapeButton in shapeButtons)
+        //{
+        //    if (gameObject.GetInstanceID() == shapeButton.GetInstanceID())
+        //    {
               
-            }
-            else
-            {
+        //    }
+        //    else
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 
     public void Triangle()
@@ -121,6 +123,7 @@ public class UIButtons : MonoBehaviour {
     {
         shape = objectType.square;
         ShapeMethods();
+        player.GetComponent<RobotController>().addShape(1, reference.GetComponent<Reference>().ID);
     }
 
     public void Circle()
