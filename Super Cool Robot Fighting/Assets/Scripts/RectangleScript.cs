@@ -18,20 +18,20 @@ public class RectangleScript : MonoBehaviour
 
     void Start()
     {
-        rebuild(8, 2, 3, 0, 0);
+        //rebuild(8, 2, 3, 5, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            scaleWidthUp();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            scaleWidthDown();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    scaleWidthUp();
+        //}
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    scaleWidthDown();
+        //}
     }
 
     public void rebuild(int width, int height, int rotation, float x, float y)
