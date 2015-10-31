@@ -14,9 +14,9 @@ public class RobotController : MonoBehaviour {
     public GameObject Triangle;
 
 	void Start () {
-        addShape(3, 0);
-        addShape(1, 1);
-        addShape(2, 2);
+        addShape(2, 0);
+        addShape(2, 0);
+        addShape(2, 1);
 
 
         updateRobot();
@@ -58,6 +58,15 @@ public class RobotController : MonoBehaviour {
             obj.h = DataSolids[obj.to].o.AddComponent<HingeJoint2D>();
             obj.h.connectedBody = DataSolids[obj.from].o.GetComponent<Rigidbody2D>();
 
+            if (obj.type == 2)
+            {
+                JointLimits limits = hingeJoint.limits;
+                limits.min = 20;
+                limits.max = 21
+                obj.h.limits = limits;
+                obj.h.useLimits = true;
+            }
+            
             obj.h.anchor = new Vector2(obj.conX, obj.conY);
             obj.h.connectedAnchor = new Vector2(obj.axX, obj.axY);
             Debug.Log("hinge " + obj.h);
@@ -113,7 +122,7 @@ public class joints
     public int targConnection;
     public float conX = 0f;
     public float conY = 0f;
-    public float axX = 0.5f;
-    public float axY = 1f;
+    public float axX = 0f;
+    public float axY = 0.5f;
     public HingeJoint2D h;
 }
