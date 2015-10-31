@@ -29,16 +29,15 @@ public class RobotController : MonoBehaviour {
 
         updateRobot();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-                
-	}
 
     void updateRobot()
     {
         //Deal with updating robot
-        Debug.Log("starting update");
+        
+        //destroy
+        deleteRobot();
+
+        //create
         DataSolids.ForEach(solidBuild);
         DataJoints.ForEach(jointBuild);
 
@@ -49,8 +48,10 @@ public class RobotController : MonoBehaviour {
         //build the joints
         obj.h = DataSolids[1].o.AddComponent<HingeJoint2D>();
         obj.h.connectedBody = DataSolids[0].o.GetComponent<Rigidbody2D>();
+
+        obj.h.anchor = new Vector2(obj.conX, obj.conY);
+        obj.h.connectedAnchor = new Vector2(obj.axX, obj.axY);
         Debug.Log("hinge "+obj.h);
-            //.rigidbody2D;
     }
 
     private void solidBuild(solids obj)
@@ -93,5 +94,9 @@ public class joints
     public int type = 1;
     public int rootConnection;
     public int targConnection;
+    public float conX = 0.2f;
+    public float conY = -0.5f;
+    public float axX = 0.5f;
+    public float axY = 1f;
     public HingeJoint2D h;
 }
