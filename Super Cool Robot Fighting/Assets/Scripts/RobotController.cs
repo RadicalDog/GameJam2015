@@ -9,6 +9,9 @@ public class RobotController : MonoBehaviour {
     List<solids> DataSolids = new List<solids>();
     List<joints> DataJoints = new List<joints>();
 
+    public GameObject Rectangle;
+    public GameObject Circle;
+
 	void Start () {
         Debug.Log("adasdasds");
         solids crappySolid = new solids();
@@ -47,7 +50,23 @@ public class RobotController : MonoBehaviour {
     private void solidBuild(solids obj)
     {
         //Build a solid!
-        
+        obj.visual = Instantiate(Rectangle);
+
+    }
+
+    void deleteRobot()
+    {
+        DataSolids.ForEach(deleteThisSolid);
+        //DataJoints.ForEach(deleteThisJoint);
+    }
+
+    private void deleteThisSolid(solids obj)
+    {
+        Destroy(obj.visual);
+    }
+    private void deleteThisJoint(joints obj)
+    {
+        throw new System.NotImplementedException();
     }
 }
 
@@ -56,6 +75,9 @@ public class solids
     float height = 10;
     float width = 10;
     float rotation = 0;
+    float x = 0;
+    float y = 0;
+    public GameObject visual;
     int type = 1;
 }
 
