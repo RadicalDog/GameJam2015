@@ -11,21 +11,13 @@ public class RobotController : MonoBehaviour {
 
     public GameObject Rectangle;
     public GameObject Circle;
+    public GameObject Triangle;
 
 	void Start () {
-        Debug.Log("adasdasds");
-        for (int i = 0; i < 3; i++)
-        {
-            solids crappySolid = new solids();
-            DataSolids.Add(crappySolid);
-        }
-        Debug.Log(DataSolids);
+        addShape(3, 0);
+        addShape(1, 1);
+        addShape(2, 2);
 
-        joints simple = new joints();
-        DataJoints.Add(simple);
-
-        DataSolids[0].x = 1;
-        DataSolids[2].x = -1;
 
         updateRobot();
 	}
@@ -43,15 +35,33 @@ public class RobotController : MonoBehaviour {
 
     }
 
+    //add shape
+    public void addShape(int type, int connection)
+    {
+
+        solids crappySolid = new solids();
+        crappySolid.ID = DataSolids.Count;
+        DataSolids.Add(crappySolid);
+
+        joints crappyJoint = new joints();
+        crappyJoint.type = type;
+        crappyJoint.from = crappySolid.ID;
+        crappyJoint.to = connection;
+        DataJoints.Add(crappyJoint);
+    }
+
     private void jointBuild(joints obj)
     {
         //build the joints
-        obj.h = DataSolids[1].o.AddComponent<HingeJoint2D>();
-        obj.h.connectedBody = DataSolids[0].o.GetComponent<Rigidbody2D>();
+        if (obj.from != 0)
+        {
+            obj.h = DataSolids[obj.to].o.AddComponent<HingeJoint2D>();
+            obj.h.connectedBody = DataSolids[obj.from].o.GetComponent<Rigidbody2D>();
 
-        obj.h.anchor = new Vector2(obj.conX, obj.conY);
-        obj.h.connectedAnchor = new Vector2(obj.axX, obj.axY);
-        Debug.Log("hinge "+obj.h);
+            obj.h.anchor = new Vector2(obj.conX, obj.conY);
+            obj.h.connectedAnchor = new Vector2(obj.axX, obj.axY);
+            Debug.Log("hinge " + obj.h);
+        }
     }
 
     private void solidBuild(solids obj)
@@ -80,11 +90,12 @@ public class RobotController : MonoBehaviour {
 
 public class solids
 {
+    public int ID = 0;
     public int height = 3;
     public int width = 3;
     public int rotation = 0;
     public float x = 0;
-    public float y = 4;
+    public float y = 2;
     public GameObject o;
     public int type = 1;
 }
@@ -96,6 +107,8 @@ public class joints
     //type 3: motorised clockwise
     //type 4: motorised anti-clockwise
     public int type = 1;
+    public int from;
+    public int to;
     public int rootConnection;
     public int targConnection;
     public float conX = 0f;
