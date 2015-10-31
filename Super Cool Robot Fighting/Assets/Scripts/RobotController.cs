@@ -14,15 +14,9 @@ public class RobotController : MonoBehaviour {
     public GameObject Triangle;
 
 	void Start () {
-<<<<<<< HEAD
         addShape(2, 0);
         addShape(2, 0);
         addShape(2, 1);
-=======
-        //addShape(3, 0);
-        addShape(1, 1);
-        ///addShape(2, 2);
->>>>>>> origin/Thomas
 
 
         updateRobot();
@@ -66,14 +60,14 @@ public class RobotController : MonoBehaviour {
             obj.h = DataSolids[obj.to].o.AddComponent<HingeJoint2D>();
             obj.h.connectedBody = DataSolids[obj.from].o.GetComponent<Rigidbody2D>();
 
-            if (obj.type == 2)
+            /*if (obj.type == 2)
             {
                 JointLimits limits = hingeJoint.limits;
                 limits.min = 20;
-                limits.max = 21
+                limits.max = 21;
                 obj.h.limits = limits;
                 obj.h.useLimits = true;
-            }
+            }*/
             
             obj.h.anchor = new Vector2(obj.conX, obj.conY);
             obj.h.connectedAnchor = new Vector2(obj.axX, obj.axY);
