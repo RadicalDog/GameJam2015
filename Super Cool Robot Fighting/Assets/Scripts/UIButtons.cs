@@ -3,23 +3,35 @@ using System.Collections;
 
 public class UIButtons : MonoBehaviour {
 
-    public int objectId;
+    #region [New Object Properties]
+    public enum objectType
+    {
+        triangle,
+        square,
+        circle
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public enum rotationDirection
+    {
+        clockwise,
+        counterClockwise
+    }
+
+    public static rotationDirection rotation;
+    public static objectType shape;
+    #endregion
+
+    public static int objectId;
+    public GameObject player;
+    public GameObject reference;
 
     public void OnClick()
     {
         Debug.Log(gameObject.name);
+        Debug.Log(objectId);
     }
 
+    #region [UIButton Methods]
     public void ResetButton()
     {
         OnClick();
@@ -64,7 +76,9 @@ public class UIButtons : MonoBehaviour {
     {
         OnClick();
     }
+    #endregion
 
+    #region [Difficulty Methods]
     public void EasyEnemy()
     {
         OnClick();
@@ -79,4 +93,43 @@ public class UIButtons : MonoBehaviour {
     {
         OnClick();
     }
+    #endregion
+
+    #region [New Object Methods]
+    public void ShapeMethods()
+    {
+        //GameObject[] shapeButtons = GameObject.FindGameObjectsWithTag("ShapeButton");
+
+        //foreach (GameObject shapeButton in shapeButtons)
+        //{
+        //    if (gameObject.GetInstanceID() == shapeButton.GetInstanceID())
+        //    {
+              
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //}
+    }
+
+    public void Triangle()
+    {
+        shape = objectType.triangle;
+        ShapeMethods();
+    }
+
+    public void Square()
+    {
+        shape = objectType.square;
+        ShapeMethods();
+        player.GetComponent<RobotController>().addShape(1, reference.GetComponent<Reference>().ID);
+    }
+
+    public void Circle()
+    {
+        shape = objectType.circle;
+        ShapeMethods();
+    }
+    #endregion
 }
