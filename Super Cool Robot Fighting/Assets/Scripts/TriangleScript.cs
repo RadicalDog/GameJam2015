@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RectangleScript : MonoBehaviour
+public class TriangleScript : MonoBehaviour
 {
 
     public float rotationSnap;
     public float scaleSnap;
     public int upperWidthLimit;
     public int upperHeightLimit;
-    public GameObject leftSpot;
-    public GameObject middleSpot;
-    public GameObject rightSpot;
+    public GameObject topSpot;
+    public GameObject bottomSpot;
     public Transform thisTransform;
     int rotationNumber = 0;
     int widthNumber = 0;
@@ -26,11 +25,11 @@ public class RectangleScript : MonoBehaviour
     {
         //if (Input.GetMouseButtonDown(0))
         //{
-        //    scaleWidthUp();
+        //    scaleHeightUp();
         //}
         //if (Input.GetMouseButtonDown(1))
         //{
-        //    scaleWidthDown();
+        //    scaleHeightDown();
         //}
     }
 
